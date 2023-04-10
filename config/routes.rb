@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  scope module: :api do
+    scope module: :v1 do
+      post "clock_in", to: "sleep_records#create"
+      put "clock_out", to: "sleep_records#update"
+    end
+  end
 end
