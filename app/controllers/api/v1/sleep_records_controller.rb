@@ -1,4 +1,9 @@
 class Api::V1::SleepRecordsController < ApplicationController
+  def index
+    sleep_records = Current.user.sleep_records.order(:created_at)
+    render json: {data: sleep_records}, status: :ok
+  end
+
   def create
     sleep_record = Current.user.sleep_records.new(clock_in: Time.current)
 

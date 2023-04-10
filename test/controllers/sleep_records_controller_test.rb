@@ -45,4 +45,20 @@ class Api::V1::SleepRecordsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :unauthorized
   end
+
+  test "should not get clocked-in times without authentication" do
+    get clock_ins_url
+
+    assert_response :unauthorized
+  end
+
+  test "should get all clocked-in times ordered by created time" do
+    get clock_ins_url, headers: authenticate_user
+
+    assert_response :success
+    json_response = JSON.parse(@response.body)
+    assert_not_nil json_response["data"]
+    assert_operator json_response["data"].length, :>, 0
+    assert json_response["data"].each_cons(2).all? { |a, b| a["created_at"] <= b["created_at"] }
+  end
 end
