@@ -1,0 +1,7 @@
+one:
+  name: John Doe
+  auth_token: <%= SecureRandom.urlsafe_base64 %>
+
+two:
+  name: Jane Smith
+  auth_token: <%= SecureRandom.urlsafe_base64 %>

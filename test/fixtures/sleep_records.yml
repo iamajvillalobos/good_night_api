@@ -1,0 +1,19 @@
+one:
+  user: one
+  clock_in: 2023-04-10 01:00:00
+  clock_out: 2023-04-10 07:00:00
+
+two:
+  user: one
+  clock_in: 2023-04-11 00:30:00
+  clock_out: 2023-04-11 06:30:00
+
+three:
+  user: two
+  clock_in: 2023-04-12 02:00:00
+  clock_out: 2023-04-12 09:00:00
+
+clock_in_only:
+  user: one
+  clock_in: 2023-04-12 02:00:00
+  clock_out: nil
