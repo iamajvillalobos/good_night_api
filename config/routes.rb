@@ -4,6 +4,9 @@ Rails.application.routes.draw do
       post "clock_in", to: "sleep_records#create"
       put "clock_out", to: "sleep_records#update"
       get "clock_ins", to: "sleep_records#index"
+
+      post "follow/:followee_id", to: "follows#create", as: "follow"
+      delete "unfollow/:followee_id", to: "follows#destroy", as: "unfollow"
     end
   end
 end
