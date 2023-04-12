@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
       post "follow/:followee_id", to: "follows#create", as: "follow"
       delete "unfollow/:followee_id", to: "follows#destroy", as: "unfollow"
+
+      get "feeds", to: "sleep_records#friends_sleep_records"
     end
   end
 end
