@@ -15,3 +15,5 @@ group :development, :test do
   gem "factory_bot_rails", "~> 6.2"
   gem "faker", "~> 3.1"
 end
+
+gem "dockerfile-rails", ">= 1.2", :group => :development
