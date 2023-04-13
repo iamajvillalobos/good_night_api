@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      post "clock_in", to: "sleep_records#create"
-      put "clock_out", to: "sleep_records#update"
-      get "clock_ins", to: "sleep_records#index"
+      resource :clock_in, only: [:create]
+      resource :clock_out, only: [:update]
+      resources :clock_ins, only: [:index]
 
       post "follow/:followee_id", to: "follows#create", as: "follow"
       delete "unfollow/:followee_id", to: "follows#destroy", as: "unfollow"
