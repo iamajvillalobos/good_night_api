@@ -16,7 +16,7 @@ class Api::V1::SleepRecordsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create sleep record" do
     assert_difference("SleepRecord.count") do
-      post clock_in_url, headers: authenticate_user
+      post api_v1_clock_in_path, headers: authenticate_user
     end
 
     assert_response :success
@@ -27,14 +27,14 @@ class Api::V1::SleepRecordsControllerTest < ActionDispatch::IntegrationTest
 
   test "should not create sleep record without authentication" do
     assert_no_difference("SleepRecord.count") do
-      post clock_in_url
+      post api_v1_clock_in_path
     end
 
     assert_response :unauthorized
   end
 
   test "should update sleep record" do
-    put clock_out_url, headers: authenticate_user
+    put api_v1_clock_out_path, headers: authenticate_user
 
     assert_response :success
     json_response = JSON.parse(@response.body)
@@ -44,19 +44,19 @@ class Api::V1::SleepRecordsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not update sleep record without authentication" do
-    put clock_out_url
+    put api_v1_clock_out_path
 
     assert_response :unauthorized
   end
 
   test "should not get clocked-in times without authentication" do
-    get clock_ins_url
+    get api_v1_clock_ins_path
 
     assert_response :unauthorized
   end
 
   test "should get all clocked-in times ordered by created time" do
-    get clock_ins_url, headers: authenticate_user
+    get api_v1_clock_ins_path, headers: authenticate_user
 
     assert_response :success
     json_response = JSON.parse(@response.body)
@@ -66,7 +66,7 @@ class Api::V1::SleepRecordsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get friend's sleep records over the past week ordered by duration" do
-    get feeds_url, headers: authenticate_user
+    get api_v1_feeds_path, headers: authenticate_user
 
     assert_response :success
     json_response = JSON.parse(@response.body)

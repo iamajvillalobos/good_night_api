@@ -14,12 +14,12 @@ The auth_token can be found on the User model, auth_token field. It is generated
 
 | Endpoint | HTTP Method | Request Payload | Response Object |
 | --- | --- | --- | --- |
-| /clock_in | POST | `Authorization: <auth_token>` | `{"message": "You are clocked in", "data": {"id": integer, "user_id": integer, "clock_in": datetime, "clock_out": datetime, "created_at": datetime, "updated_at": datetime}}` |
-| /clock_out | PUT | `Authorization: <auth_token>` | `{"message": "You are clocked out"}` |
-| /clock_ins | GET | `Authorization: <auth_token>` | `{"data": [{"id": integer, "user_id": integer, "clock_in": datetime, "clock_out": datetime, "created_at": datetime, "updated_at": datetime}]}` |
-| /follow/:followee_id | POST | `Authorization: <auth_token>` | `{"message": "You are now following <followee_name>"}` |
-| /unfollow/:followee_id | DELETE | `Authorization: <auth_token>` | `{"message": "You are no longer following <followee_name>"}` |
-| /feeds | GET | `Authorization: <auth_token>` | `{"data": [{"id": integer, "user_name": string, "clock_in": datetime, "clock_out": datetime, "duration": float}]}` |
+| /api/v1/clock_in | POST | `Authorization: <auth_token>` | `{"message": "You are clocked in", "data": {"id": integer, "user_id": integer, "clock_in": datetime, "clock_out": datetime, "created_at": datetime, "updated_at": datetime}}` |
+| /api/v1/clock_out | PUT | `Authorization: <auth_token>` | `{"message": "You are clocked out"}` |
+| /api/v1/clock_ins | GET | `Authorization: <auth_token>` | `{"data": [{"id": integer, "user_id": integer, "clock_in": datetime, "clock_out": datetime, "created_at": datetime, "updated_at": datetime}]}` |
+| /api/v1/follow/:followee_id | POST | `Authorization: <auth_token>` | `{"message": "You are now following <followee_name>"}` |
+| /api/v1/unfollow/:followee_id | DELETE | `Authorization: <auth_token>` | `{"message": "You are no longer following <followee_name>"}` |
+| /api/v1/feeds | GET | `Authorization: <auth_token>` | `{"data": [{"id": integer, "user_name": string, "clock_in": datetime, "clock_out": datetime, "duration": float}]}` |
 
 ## Running the Application
 
