@@ -1,24 +1,37 @@
-# README
+# Goodnight API
+This is a simple sleep tracking app API built with Ruby on Rails.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Authentication
+Each request needs a authentication header. The format is
 
-Things you may want to cover:
+```
+"Authentication" => auth_token
+```
 
-* Ruby version
+The auth_token can be found on the User model, auth_token field. It is generated when the user is created.
 
-* System dependencies
+## Endpoints
 
-* Configuration
+| Endpoint | HTTP Method | Request Payload | Response Object |
+| --- | --- | --- | --- |
+| /clock_in | POST | `Authorization: <auth_token>` | `{"message": "You are clocked in", "data": {"id": integer, "user_id": integer, "clock_in": datetime, "clock_out": datetime, "created_at": datetime, "updated_at": datetime}}` |
+| /clock_out | PUT | `Authorization: <auth_token>` | `{"message": "You are clocked out"}` |
+| /clock_ins | GET | `Authorization: <auth_token>` | `{"data": [{"id": integer, "user_id": integer, "clock_in": datetime, "clock_out": datetime, "created_at": datetime, "updated_at": datetime}]}` |
+| /follow/:followee_id | POST | `Authorization: <auth_token>` | `{"message": "You are now following <followee_name>"}` |
+| /unfollow/:followee_id | DELETE | `Authorization: <auth_token>` | `{"message": "You are no longer following <followee_name>"}` |
+| /feeds | GET | `Authorization: <auth_token>` | `{"data": [{"id": integer, "user_name": string, "clock_in": datetime, "clock_out": datetime, "duration": float}]}` |
 
-* Database creation
+## Running the Application
 
-* Database initialization
+To run the application, first run bundle install to install the necessary gems. Then, run the following commands to create and seed the database:
 
-* How to run the test suite
+```
+bin/rails db:create
+bin/rails db:migrate
+bin/rails db:seed
+```
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Runing the test
+```
+bin/rails test
+```
