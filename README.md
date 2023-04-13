@@ -1,6 +1,9 @@
 # Goodnight API
 This is a simple sleep tracking app API built with Ruby on Rails.
 
+## Demo App
+This is deployed to fly.io. URL is at https://goodnight.ajvillalobos.com. Use this as the base URL if you want to try the app. You can this `auth_token` for the sample user `181006696ae26c0a1db0b0d8821362e0fe61fc81284cb17754c035b3d04de296`.
+
 ## Authentication
 Each request needs a authentication header. The format is
 
