@@ -12,17 +12,6 @@ class Api::V1::FollowsController < ApplicationController
     end
   end
 
-  def destroy
-    follow = Current.user.follows.find_by(followee: @followee)
-
-    if follow&.destroy
-      render json: {message: "You have unfollowed #{@followee.name}"},
-        status: :ok
-    else
-      render json: {error: "Follow not found"}, status: :unprocessable_entity
-    end
-  end
-
   private
 
   def set_followee
