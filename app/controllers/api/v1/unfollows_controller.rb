@@ -1,16 +1,5 @@
-class Api::V1::FollowsController < ApplicationController
+class Api::V1::UnfollowsController < ApplicationController
   before_action :set_followee, only: [:create, :destroy]
-
-  def create
-    follow = Current.user.follows.new(followee: @followee)
-
-    if follow.save
-      render json: {message: "You are now following #{@followee.name}"},
-        status: :created
-    else
-      render json: {error: follow.errors}, status: :unprocessable_entity
-    end
-  end
 
   def destroy
     follow = Current.user.follows.find_by(followee: @followee)

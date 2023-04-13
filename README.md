@@ -15,14 +15,15 @@ The auth_token can be found on the User model, auth_token field. It is generated
 
 ## Endpoints
 
-| Endpoint | HTTP Method | Request Payload | Response Object |
-| --- | --- | --- | --- |
-| /api/v1/clock_in | POST | `Authorization: <auth_token>` | `{"message": "You are clocked in", "data": {"id": integer, "user_id": integer, "clock_in": datetime, "clock_out": datetime, "created_at": datetime, "updated_at": datetime}}` |
-| /api/v1/clock_out | PUT | `Authorization: <auth_token>` | `{"message": "You are clocked out"}` |
-| /api/v1/clock_ins | GET | `Authorization: <auth_token>` | `{"data": [{"id": integer, "user_id": integer, "clock_in": datetime, "clock_out": datetime, "created_at": datetime, "updated_at": datetime}]}` |
-| /api/v1/follow/:followee_id | POST | `Authorization: <auth_token>` | `{"message": "You are now following <followee_name>"}` |
-| /api/v1/unfollow/:followee_id | DELETE | `Authorization: <auth_token>` | `{"message": "You are no longer following <followee_name>"}` |
-| /api/v1/feeds | GET | `Authorization: <auth_token>` | `{"data": [{"id": integer, "user_name": string, "clock_in": datetime, "clock_out": datetime, "duration": float}]}` |
+| Endpoint | HTTP Method | Request Headers | Request Payload | Response Object |
+| --- | --- | --- | --- | --- |
+| /api/v1/clock_in | POST | `Authorization: <auth_token>` | None | `{"message": "You are clocked in", "data": {"id": integer, "user_id": integer, "clock_in": datetime, "clock_out": datetime, "created_at": datetime, "updated_at": datetime}}` |
+| /api/v1/clock_out | PUT | `Authorization: <auth_token>` | None | `{"message": "You are clocked out"}` |
+| /api/v1/clock_ins | GET | `Authorization: <auth_token>` | None | `{"data": [{"id": integer, "user_id": integer, "clock_in": datetime, "clock_out": datetime, "created_at": datetime, "updated_at": datetime}]}` |
+| /api/v1/follow | POST | `Authorization: <auth_token>` | `{"id": integer}` | `{"message": "You are now following <followee_name>"}` |
+| /api/v1/unfollow | DELETE | `Authorization: <auth_token>` | `{"id": integer}` | `{"message": "You are no longer following <followee_name>"}` |
+| /api/v1/feeds | GET | `Authorization: <auth_token>` | None | `{"data": [{"id": integer, "user_name": string, "clock_in": datetime, "clock_out": datetime, "duration": float}]}` |
+
 
 ## Running the Application
 
