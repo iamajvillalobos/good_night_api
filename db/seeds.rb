@@ -1,12 +1,23 @@
-user1 = User.create!(name: "AJ")
-user2 = User.create!(name: "Bobby")
-user3 = User.create!(name: "Cindy")
+# Create users
+5.times do
+  User.create(name: Faker::Name.name, auth_token: SecureRandom.hex(32))
+end
 
-SleepRecord.create!(user_id: user1.id, clock_in: 1.day.ago, clock_out: 1.day.ago + 8.hours)
-SleepRecord.create!(user_id: user2.id, clock_in: 1.day.ago, clock_out: 1.day.ago + 8.hours)
-SleepRecord.create!(user_id: user3.id, clock_in: 1.day.ago, clock_out: 1.day.ago + 8.hours)
-SleepRecord.create!(user_id: user2.id, clock_in: 2.days.ago, clock_out: 2.days.ago + 8.hours)
-SleepRecord.create!(user_id: user3.id, clock_in: 2.days.ago, clock_out: 2.days.ago + 8.hours)
+# Create follows
+users = User.all
+users.each do |follower|
+  followees = users.reject { |user| user == follower }
+  followees.sample(rand(users.count)).each do |followee|
+    Follow.create(follower: follower, followee: followee)
+  end
+end
 
-Follow.create!(follower_id: user1.id, followee_id: user2.id)
-Follow.create!(follower_id: user1.id, followee_id: user3.id)
+# Create sleep records
+users.each do |user|
+  10.times do
+    clock_in = Faker::Time.between(from: 1.week.ago, to: Time.current)
+    duration = rand(1..8).hours
+    clock_out = clock_in + duration
+    user.sleep_records.create(clock_in: clock_in, clock_out: clock_out)
+  end
+end
