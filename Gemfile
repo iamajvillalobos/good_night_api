@@ -16,4 +16,8 @@ group :development, :test do
   gem "factory_bot_rails", "~> 6.2"
 end
 
-gem "dockerfile-rails", ">= 1.2", :group => :development
+group :test do
+  gem "simplecov", require: false
+end
+
+gem "dockerfile-rails", ">= 1.2", group: :development
